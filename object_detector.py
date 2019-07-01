@@ -29,3 +29,10 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"sofa", "train", "tv monitor"]
 # Generate colors for the bounding boxes for each class
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
+
+print("[INFO]: Loading pretrained network....")
+model = cv2.dnn.readNetFromCaffe(prototxt, caffeModel)
+
+image = cv2.imread(imagePath)
+image = cv2.resize(image, (imageWidth,imageHeight))
+blob = cv2.dnn.blobFromImage(image,1, (imageWidth,imageHeight),127.5)
