@@ -35,4 +35,4 @@ model = cv2.dnn.readNetFromCaffe(prototxt, caffeModel)
 
 image = cv2.imread(imagePath)
 image = cv2.resize(image, (imageWidth,imageHeight))
-blob = cv2.dnn.blobFromImage(image,1, (imageWidth,imageHeight),127.5)
+blob = cv2.dnn.blobFromImage(image, 0.007843, (imageWidth,imageHeight),127.5)
