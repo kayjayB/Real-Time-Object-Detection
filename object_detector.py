@@ -3,6 +3,13 @@ import numpy as np
 import argparse
 import cv2
 
+def extract(detections, height, width):
+    confidences = detections[0,0,:,2] # (1,1,n,2) = Confidence
+    classes = detections[0,0,:,1] # (1,1,n,1) = Class
+    # (1,1,n,3:7) = Bounding box
+    boxes = detections[0, 0, :, 3:7] * np.array([width, height, width, height])
+    return confidences, classes.astype('int'), boxes.astype('int')
+
 # Construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", required=True,
