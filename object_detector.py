@@ -47,6 +47,7 @@ blob = cv2.dnn.blobFromImage(image, 0.007843, (imageWidth,imageHeight),127.5)
 
 # Set the image as the input to the network
 network.setInput(blob)
+print("[INFO]: Detecting objects....")
 detections = network.forward() # (1,1,n,7) numpy n-dimensional array
 
 for i in np.arange(0, detections.shape[2]):
