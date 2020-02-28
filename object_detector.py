@@ -52,10 +52,10 @@ while(True):
         # Capture frame-by-frame
         ret, frame = videoStream.read()
         blob = cv2.dnn.blobFromImage(cv2.resize(frame,(requiredWidth,requiredHeight)), 0.007843, (requiredWidth,requiredHeight),127.5)
-
+        
         # Set the image as the input to the network
         network.setInput(blob)
-        # print("[INFO]: Detecting objects....")
+
         detections = network.forward() # (1,1,n,7) numpy n-dimensional array
 
         for i in np.arange(0, detections.shape[2]):
@@ -70,7 +70,7 @@ while(True):
 
                 # Display the label and the confidence on the image
                 label = "{}: {:.2f}%".format(CLASSES[classIndex], confidences[i] * 100)
-                # print("[INFO] {}".format(label))
+
                 y = startY - 15 if startY - 15 > 15 else startY + 15
                 cv2.putText(frame, label, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[classIndex], 2)
         
